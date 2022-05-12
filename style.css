@@ -84,7 +84,8 @@ label{
     margin: 30px;
     height: 50px;
     padding-left: 2%;
-    font-size: 2rem;
+    font-size: 1.7rem;
+    font-family: "Montserrat";
     color: rgba(0, 0, 0, 0.868);
     background-color: rgba(226, 226, 226, 0.521);
     box-shadow: 0 13px 15px -2px rgba(0, 0, 0, .2);
