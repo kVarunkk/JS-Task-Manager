@@ -14,6 +14,8 @@ function addItem() {
   newButton.appendChild(node2);
   var newClass = node.classList;
   newClass.add('list');
+  newClass.add('draggable');
+  node.setAttribute("draggable","true");
   listWrapper.appendChild(node);
 
 
