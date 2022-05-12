@@ -79,6 +79,10 @@ label{
     margin-top: 100px;
 }
 
+.draggable{
+    cursor: move;
+}
+
 .list{
     /* display: flex; */
     border: 0px solid rgb(79, 79, 79);
