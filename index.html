@@ -61,13 +61,18 @@
     <script src="index.js"></script>
     
     <script>
-        const dragArea = document.querySelector('.list');
+        if (touchHandled || !self._mouseCapture(event.originalEvent.changedTouches[0]) || event.originalEvent.target.localName === 'textarea'
+        || event.originalEvent.target.localName === 'input' || event.originalEvent.target.localName === 'button' || event.originalEvent.target.localName === 'li'
+        || event.originalEvent.target.localName === 'a'
+        || event.originalEvent.target.localName === 'select' || event.originalEvent.target.localName === 'img'){
+            const dragArea = document.querySelector('.list-wrapper');
 
-        new Sortable(dragArea, { 
-        
-            animation: 250
-            
-    });
+new Sortable(dragArea, { 
+
+    animation: 250
+    
+});
+        } 
     </script>
     
     
