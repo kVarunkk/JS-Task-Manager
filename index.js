@@ -1,52 +1,99 @@
-var type = document.querySelector('.type');
-var sub = document.querySelector('.sub');
-var listWrapper = document.querySelector('.list-wrapper');
-var close = document.getElementsByClassName("cancel");
-var i;
+const LOCAL_STORAGE_LIST_KEY = 'task.lists';
 
 
-function addItem() {
-  var node = document.createElement('div');
-  var newButton = document.createElement('button');
+var listContainer = document.querySelector('.list-wrapper');
 
-  newButton.classList.add('cancel');
-  var node2 = document.createTextNode('X');
-  newButton.appendChild(node2);
-  var newClass = node.classList;
-  newClass.add('list');
-  newClass.add('draggable');
-  node.setAttribute("draggable","true");
-  listWrapper.appendChild(node);
+let lists = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_KEY)) || [] ;
+
+var newListInput = document.querySelector('.type');
+
+var form = document.querySelector('form');
+
+var cancelButtons =  document.getElementsByClassName("cancel");
 
 
-  var resultStored = type.value;
-  type.value = "";
 
-  
-  node.innerHTML += resultStored;
-  node.appendChild(newButton);
 
-  for (i = 0; i < close.length; i++) {
-    close[i].onclick = function () {
-      var div = this.parentElement;
-      div.style.display = "none";
-    }
+form.addEventListener('submit',e=>{
+  e.preventDefault();
+  const listName = newListInput.value;
+  if(listName == null || listName === '') return;
+  const list = createList(listName);
+  newListInput.value = null;
+  lists.push(list);
+  saveAndRender();
+})
+
+
+function createList(name){
+  return name;
+}
+
+function saveAndRender(){
+  save();
+  render();
+}
+
+function save(){
+  localStorage.setItem(LOCAL_STORAGE_LIST_KEY,JSON.stringify(lists));
+}
+
+
+function render(){
+  clearElement(listContainer);
+  lists.forEach((list,index) => {
+    const listElement = document.createElement('div');
+    listElement.classList.add('list');
+    listElement.classList.add('draggable');
+    listElement.setAttribute("draggable","true");
+    listElement.innerText = list;
+
+    var newButton = document.createElement('button');
+    newButton.classList.add('cancel');
+    var node2 = document.createTextNode('X');
+    newButton.appendChild(node2);
+    listElement.appendChild(newButton);
+
+    listContainer.appendChild(listElement);
+
+    remove();
+
+    newButton.addEventListener('click',()=>{
+      deleteItem(index);
+    })
+    
+
+  })
+}
+
+function clearElement(element){
+  while(element.firstChild){
+    element.removeChild(element.firstChild);
   }
 }
 
 
+function remove(){
+
+  for (let i = 0; i < cancelButtons.length; i++) {
+        cancelButtons[i].onclick = function () {
+          var div = this.parentElement;
+          div.style.display = "none";
+          // localStorage.removeItem(LOCAL_STORAGE_LIST_KEY) 
+        }
+      }
+
+     
+}
+
+function deleteItem(index) {
+  let todos = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_KEY))
+  todos.splice(index, 1) 
+  localStorage.setItem(LOCAL_STORAGE_LIST_KEY, JSON.stringify(todos)) 
+} 
+
+// todos.forEach((element, index) =>{ })
 
 
 
-sub.addEventListener('click', addItem);
-
-document.addEventListener("keyup", function(event) {
-  if (event.code === 'Enter') {
-      addItem();
-  }
-});
-
-
-
-
-
+render();
