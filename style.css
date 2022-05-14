@@ -9,6 +9,13 @@ body{
     box-sizing: border-box;
 }
 
+svg{
+    z-index: -1;
+    top: 0;
+    position: absolute;
+    /* background-color: #98d6ffb1; */
+}
+
 .wrapper{
     width: 60%;
     margin-left: auto;
