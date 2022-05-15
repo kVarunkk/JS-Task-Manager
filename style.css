@@ -90,7 +90,7 @@ label{
     cursor: move;
 }
 
-.list{
+.item{
     /* display: flex; */
     border: 0px solid rgb(79, 79, 79);
    
@@ -109,7 +109,7 @@ label{
     /* min-width:100% ; */
 }
 
-.list button{
+.item button{
     /* margin-left: 200px; */
     float: right;
     cursor: pointer;
@@ -123,7 +123,7 @@ label{
     color: white;
 }
 
-.list button:hover{
+.item button:hover{
     background-color: rgba(255, 68, 0, 0.73);
 }
 
@@ -158,12 +158,12 @@ label{
         width: 90%;
     }
 
-    .list{
+    .item{
         font-size: 1.2rem;
         height: 30px;
     }
 
-    .list button{
+    .item button{
         width: 20%;
     }
 }
