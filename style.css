@@ -86,14 +86,9 @@ label{
     margin-top: 100px;
 }
 
-.draggable{
-    cursor: move;
-}
 
 .item{
-    /* display: flex; */
     border: 0px solid rgb(79, 79, 79);
-   
     margin: 30px;
     height: 35px;
     padding-left: 2%;
@@ -102,18 +97,27 @@ label{
     color: rgba(0, 0, 0, 0.868);
     background-color: rgba(226, 226, 226, 0.521);
     box-shadow: 0 13px 15px -2px rgba(0, 0, 0, .2);
-    /* text-align: center; */
-    justify-content: center;
-    /* transition: 300ms ease-in; */
-    /* padding: 15px; */
-    /* min-width:100% ; */
+    display: flex;
 }
 
-.item button{
-    /* margin-left: 200px; */
-    float: right;
+.span-name{
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.input{
+    border: 0;
+    background-color: rgba(226, 226, 226, 0.521);
+    font-family:"Montserrat" ;
+    font-size: 1.2rem;
+}
+
+
+.cancel{
+    
+    margin-left: auto;
     cursor: pointer;
-    width: 10%;
+    width: 6%;
     height: 100%;
     border: 0;
     border-radius: 0;
@@ -123,7 +127,7 @@ label{
     color: white;
 }
 
-.item button:hover{
+.cancel:hover{
     background-color: rgba(255, 68, 0, 0.73);
 }
 
@@ -163,7 +167,7 @@ label{
         height: 30px;
     }
 
-    .item button{
-        width: 20%;
+    .cancel{
+        width: 12%;
     }
 }
