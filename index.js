@@ -23,8 +23,7 @@ function addTodo(item) {
     // make a todo object, which has id, name, and completed properties
     const todo = {
       id: Date.now(),
-      name: item,
-      completed: false
+      name: item
     };
     // then add it to todos array
     todos.push(todo);
@@ -48,15 +47,8 @@ function renderTodos(todos) {
     
     li.setAttribute('data-key', item.id);
 
-    li.classList.add('draggable');
-    li.setAttribute("draggable","true");
-    
-
-    
-
-    li.innerHTML = `${item.name} <button class="cancel">X</button>`;
-
-
+    li.innerHTML = `<span class= "span-name"><input class = "input" type="text" value="${item.name}" onfocus="getCurrentTask(this)" onblur="editTask(this)"></input></span> <button class="cancel"><i class="fa-solid fa-xmark"></i></button>`;
+  
     // finally add the <li> to the list wrapper
     todoItemsList.append(li);
   });}
@@ -96,8 +88,58 @@ function deleteTodo(id) {
 }
 
 
+
+
 // initially get everything from localStorage
 getFromLocalStorage();
+
+
+// to edit task
+var currentTask = null;
+
+    // get current task
+    function getCurrentTask(event) {
+      currentTask = event.value;
+    }
+
+    function editTask(event){
+      // getFromLocalStorage()
+      let todos = Array.from(JSON.parse(localStorage.getItem("todos")));
+
+
+      if (event.value === "") {
+        alert("Task is empty!");
+        event.value = currentTask;
+        return;
+      }
+
+
+      // task already exist
+      todos.forEach(todo => {
+        if (todo.name === event.value) {
+          alert("Task already exists!");
+          event.value = currentTask;
+          return;
+        }
+      });
+
+
+
+      todos.forEach(todo => {
+        if (todo.name === currentTask) {
+          todo.name = event.value;
+        }
+      });
+      // update local storage
+      localStorage.setItem('todos', JSON.stringify(todos));
+    
+    }
+    
+
+
+
+
+
 
 
 // after that addEventListener to list wrapper. Because we need to listen for click event in all delete-button 
@@ -107,5 +149,10 @@ todoItemsList.addEventListener('click', function(event) {
   if (event.target.classList.contains('cancel')) {
     // get id from data-key attribute's value of parent <li> where the delete-button is present
     deleteTodo(event.target.parentElement.getAttribute('data-key'));
+  }
+
+  if (event.target.classList.contains('fa-xmark')) {
+    // get id from data-key attribute's value of parent <li> where the delete-button is present
+    deleteTodo(event.target.parentElement.parentElement.getAttribute('data-key'));
   }
 });
