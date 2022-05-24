@@ -113,18 +113,6 @@ var currentTask = null;
         return;
       }
 
-
-      // task already exist
-      todos.forEach(todo => {
-        if (todo.name === event.value) {
-          alert("Task already exists!");
-          event.value = currentTask;
-          return;
-        }
-      });
-
-
-
       todos.forEach(todo => {
         if (todo.name === currentTask) {
           todo.name = event.value;
