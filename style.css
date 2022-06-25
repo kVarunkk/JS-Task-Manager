@@ -140,7 +140,7 @@ label {
 
 
 
-@media(max-width : 480px) {
+@media(max-width : 767px) {
 
     .wrapper {
         width: 100%;
@@ -193,3 +193,16 @@ label {
     }
 
 }
+
+
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px){
+
+    .cancel{
+        width: 10%;
+    }
+
+    .list-wrapper{
+        width: 80%;
+    }
+}
+
