@@ -2,9 +2,9 @@
 
 This is a Todo list Web Application made using JavaScript.
 
-Features :
+![TaskManager-pic](Todo.png)
 
-1. CRUD operations
-2. Localstorage
+## Features
 
-Live: https://kvarunkk.github.io/JS-Task-Manager/
+- CRUD
+- Tasks stored in LocalStorage
